@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soyle.kz - Біз туралы</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #FFC107;
+            --primary-dark: #FFA000;
+            --secondary-color: #2c3e50;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --gray-color: #6c757d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: #fff;
+            color: var(--dark-color);
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 10px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+            margin-left: 5px;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+            position: relative;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            font-weight: 600;
+            font-size: 16px;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-dark);
+        }
+
+        .auth-buttons {
+            display: flex;
+            align-items: center;
+        }
+
+        .request-btn {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 193, 7, 0.3);
+            display: inline-block;
+        }
+
+        .request-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 160, 0, 0.4);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--secondary-color);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #2c3e50 0%, #4a6491 100%);
+            color: white;
+            overflow: hidden;
+            padding: 0 20px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1516321310765-79d3a80d2c29?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            opacity: 0.15;
+            z-index: 0;
+        }
+
+        .cloud {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            filter: blur(10px);
+            animation: floatCloud linear infinite;
+        }
+
+        .cloud-1 {
+            width: 300px;
+            height: 100px;
+            top: 20%;
+            left: 5%;
+            animation-duration: 60s;
+        }
+
+        .cloud-2 {
+            width: 200px;
+            height: 70px;
+            top: 40%;
+            right: 10%;
+            animation-duration: 50s;
+            animation-delay: 10s;
+        }
+
+        .cloud-3 {
+            width: 250px;
+            height: 80px;
+            bottom: 15%;
+            left: 15%;
+            animation-duration: 70s;
+            animation-delay: 5s;
+        }
+
+        @keyframes floatCloud {
+            0% {
+                transform: translateX(-100px);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateX(calc(100vw + 100px));
+                opacity: 0;
+            }
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 193, 7, 0.1);
+            animation: pulseCircle ease-in-out infinite;
+        }
+
+        .circle-1 {
+            width: 300px;
+            height: 300px;
+            top: -100px;
+            right: -100px;
+            animation-duration: 15s;
+        }
+
+        .circle-2 {
+            width: 500px;
+            height: 500px;
+            bottom: -200px;
+            left: -200px;
+            animation-duration: 20s;
+            animation-delay: 3s;
+        }
+
+        @keyframes pulseCircle {
+            0%, 100% {
+                transform: scale(0.9);
+                opacity: 0.3;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.5;
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 50px 40px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transform-style: preserve-3d;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            margin: 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0) 50%,
+                rgba(255, 255, 255, 0.1) 50%,
+                rgba(255, 255, 255, 0.1) 100%
+            );
+            transform: rotate(30deg);
+            animation: shine 5s infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                transform: rotate(30deg) translate(-30%, -30%);
+            }
+            100% {
+                transform: rotate(30deg) translate(30%, 30%);
+            }
+        }
+
+        .hero-card:hover {
+            transform: translateY(-15px) rotateX(5deg);
+            box-shadow: 0 35px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 25px;
+            font-weight: 700;
+            background: linear-gradient(to right, #FFC107, #FF9800);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 5s infinite alternate;
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, #FFC107, #FF9800);
+            border-radius: 3px;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            line-height: 1.6;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px 0;
+            background-color: var(--light-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            font-size: 36px;
+            color: var(--secondary-color);
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 4px;
+            background: var(--primary-color);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-card {
+            width: 100%;
+            max-width: 600px;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            transform-style: preserve-3d;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .about-card:hover {
+            transform: translateY(-15px) rotateY(5deg);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+
+        .about-card h3 {
+            font-size: 28px;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .about-card p {
+            font-size: 16px;
+            color: var(--gray-color);
+            line-height: 1.8;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Team Section */
+        .team {
+            padding: 100px 0;
+            background: linear-gradient(135deg, rgba(255,193,7,0.05) 0%, rgba(255,160,0,0.05) 100%);
+        }
+
+        .team-cards {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .team-card {
+            width: 280px;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        .team-card:hover {
+            transform: translateY(-15px) rotateY(5deg);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+
+        .team-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .team-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+            opacity: 0.3;
+        }
+
+        .team-content {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .team-name {
+            font-size: 22px;
+            color: var(--secondary-color);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .team-role {
+            font-size: 16px;
+            color: var(--gray-color);
+            margin-bottom: 15px;
+        }
+
+        /* Mission Section */
+        .mission {
+            padding: 100px 0;
+            background-color: var(--light-color);
+            position: relative;
+        }
+
+        .mission-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .mission-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.02);
+            }
+        }
+
+        .mission-card h3 {
+            font-size: 28px;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .mission-card p {
+            font-size: 16px;
+            color: var(--gray-color);
+            line-height: 1.8;
+        }
+
+        /* Particles */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: floatParticle linear infinite;
+        }
+
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        /* Footer Styles */
+        .footer {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #1a2530 100%);
+            color: #fff;
+            padding: 60px 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .footer-logo img {
+            height: 40px;
+            margin-right: 10px;
+            filter: brightness(0) invert(1);
+        }
+
+        .footer-logo span {
+            font-size: 24px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .logo-dot {
+            color: var(--primary-color);
+        }
+
+        .footer-about {
+            color: rgba(255,255,255,0.7);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .footer-title {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 3px;
+            background: var(--primary-color);
+            bottom: 0;
+            left: 0;
+            border-radius: 3px;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+            color: rgba(255,255,255,0.7);
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-links i {
+            margin-right: 10px;
+            color: var(--primary-color);
+            width: 20px;
+            text-align: center;
+        }
+
+        .social-media {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            border-radius: 8px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            background: rgba(255,255,255,0.05);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .social-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: 0.5s;
+        }
+
+        .social-btn:hover::before {
+            left: 100%;
+        }
+
+        .social-btn i {
+            font-size: 18px;
+            margin-right: 10px;
+            width: 20px;
+        }
+
+        .youtube {
+            background: rgba(255, 0, 0, 0.1);
+            border-left: 3px solid #FF0000;
+        }
+
+        .instagram {
+            background: rgba(188, 42, 141, 0.1);
+            border-left: 3px solid #E1306C;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.5);
+            font-size: 14px;
+        }
+
+        .footer-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .footer-particles::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            animation: particle-fall 15s linear infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes particle-fall {
+            0% { transform: translateY(-100vh) translateX(0); }
+            100% { transform: translateY(100vh) translateX(100px); }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-wrapper {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 80px);
+                background: white;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                transition: all 0.3s;
+                z-index: 999;
+                flex-direction: column;
+                padding: 30px;
+                gap: 20px;
+            }
+
+            nav.active {
+                left: 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                padding: 30px;
+            }
+
+            nav ul li {
+                margin: 15px 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .auth-buttons {
+                display: flex;
+                justify-content: center;
+                margin-top: 20px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .about-card, .team-card {
+                width: 100%;
+                max-width: 350px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .footer-column {
+                text-align: center;
+            }
+
+            .footer-title::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .footer-logo {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 150px 0 80px;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+        }
+
+
+        /* Добавление стилей и анимаций для футера */
+.footer {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, #1a2530 100%);
+    color: #fff;
+    padding: 60px 0 20px;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.quote-section {
+    margin-bottom: 50px;
+    padding: 20px 0;
+    position: relative;
+}
+
+.quote-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: var(--primary-color);
+    border-radius: 3px;
+}
+
+.quote-slider {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    height: 120px;
+}
+
+.quote-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transform: translateY(20px);
+}
+
+.quote-item.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.quote-icon {
+    color: var(--primary-color);
+    font-size: 24px;
+    opacity: 0.7;
+    margin-bottom: 15px;
+    display: inline-block;
+    animation: pulse 2s infinite;
+}
+
+.quote-text {
+    font-size: 20px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    font-style: italic;
+    font-weight: 500;
+}
+
+.quote-author {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 15px;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.footer-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.footer-particles::before {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    animation: particle-fall 15s linear infinite;
+    opacity: 0.3;
+}
+
+@keyframes particle-fall {
+    0% { transform: translateY(-100vh) translateX(0); }
+    100% { transform: translateY(100vh) translateX(100px); }
+}
+
+.social-btn {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-radius: 8px;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    background: rgba(255,255,255,0.05);
+    overflow: hidden;
+    position: relative;
+}
+
+.social-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.social-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: 0.5s;
+}
+
+.social-btn:hover::before {
+    left: 100%;
+}
+
+.social-btn i {
+    font-size: 18px;
+    margin-right: 10px;
+    width: 20px;
+}
+
+.youtube {
+    background: rgba(255, 0, 0, 0.1);
+    border-left: 3px solid #FF0000;
+}
+
+.instagram {
+    background: rgba(188, 42, 141, 0.1);
+    border-left: 3px solid #E1306C;
+}
+
+@media (max-width: 768px) {
+    .quote-text {
+        font-size: 18px;
+    }
+}
+    </style>
+</head>
+<body onload="createParticles()">
+    <header id="header">
+    <div class="container">
+        <div class="header-content">
+            <div class="logo">
+                <a href="main.html"><img src="https://6f2859a7-8667-4b05-9978-a8922e29bf1f.selstorage.ru/YT:UC7Blt3m2UpBeTr6m6hvf1Og?time=1723993714" alt=""></a>
+                Soyle<span>.kz</span>
+            </div>
+            <div class="nav-wrapper">
+                <nav id="nav">
+                    <ul>
+                        <li><a href="main.html">Басты бет</a></li>
+                        <li><a href="aboutus.html">Біз туралы</a></li>
+                        <li><a href="contactus.html">Байланыс</a></li>
+                    </ul>
+                </nav>
+                <div class="auth-buttons">
+                    <a href="leaverequest.html" class="request-btn">Өтініш қалдыру</a>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <section class="hero">
+        <div class="cloud cloud-1"></div>
+        <div class="cloud cloud-2"></div>
+        <div class="cloud cloud-3"></div>
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+        <div class="particles" id="particles"></div>
+
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-card">
+                    <h1>Біз туралы</h1>
+                    <p>Soyle.kz - шет тілдерін үйренудің заманауи платформасы. Біздің миссиямыз - әрбір адамға тілдерді тиімді, қызықты және қолжетімді түрде үйрету.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about">
+        <div class="container">
+            <h2 class="section-title">Біздің тарихымыз</h2>
+            <div class="about-content">
+                <div class="about-card">
+                    <h3>Біздің бастауымыз</h3>
+                    <p>Soyle.kz 2018 жылы құрылды. Біздің мақсатымыз - тілдерді үйренуді барлық жастағы және деңгейдегі адамдар үшін қызықты әрі тиімді ету. Бүгінгі таңда мыңдаған оқушылар біздің курстар арқылы шет тілдерін меңгеруде.</p>
+                </div>
+                <div class="about-card">
+                    <h3>Біздің көзқарасымыз</h3>
+                    <p>Біз тілдерді үйрену тек білім ғана емес, сонымен қатар жаңа мәдениеттерді ашу және әлеммен байланыс орнату деп санаймыз. Біздің платформа осы мүмкіндікті әрбір оқушыға ұсынады.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team">
+        <div class="container">
+            <h2 class="section-title">Біздің команда</h2>
+            <div class="team-cards">
+                <div class="team-card">
+                    <div class="team-image" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuCzeu6RQ0Aheh9-WNsRFdus-yqUCJnXl5fA&s');"></div>
+                    <div class="team-content">
+                        <h3 class="team-name">Айжан Ермекова</h3>
+                        <p class="team-role">Негізін қалаушы және бас директор</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-image" style="background-image: url('https://farabi.university/storage/news/2876824838659688ade8605013789061_WhatsApp%20Image%202023-12-29%20at%20075341%20(2).jpeg');"></div>
+                    <div class="team-content">
+                        <h3 class="team-name">Ержан Сейітов</h3>
+                        <p class="team-role">Бас мұғалім</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-image" style="background-image: url('https://avatars.preply.com/i/logos/i/logos/avatar_mr9vvfkvi8.jpg');"></div>
+                    <div class="team-content">
+                        <h3 class="team-name">Динара Қалиева</h3>
+                        <p class="team-role">Маркетинг директоры</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mission">
+        <div class="container">
+            <h2 class="section-title">Біздің миссиямыз</h2>
+            <div class="mission-content">
+                <div class="mission-card">
+                    <h3>Тілдер арқылы әлемді біріктіру</h3>
+                    <p>Біз әрбір адамға шет тілдерін үйрену арқылы жаңа мүмкіндіктер ашуға көмектесеміз. Біздің миссиямыз - білім беруді қолжетімді ету және тілдерді үйренуді қызықты әрі тиімді процеске айналдыру.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <img src="https://via.placeholder.com/40x40" alt="Soyle.kz Logo">
+                        <span>Soyle<span class="logo-dot">.kz</span></span>
+                    </div>
+                    <p class="footer-about">Біз сізге шет тілдерін тиімді және қызықты әдістермен үйренуге көмектесеміз.</p>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title">Байланыс</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> Қазақстан, Алматы</li>
+                        <li><i class="fas fa-envelope"></i> info@soyle.kz</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title">Біздің желілер</h3>
+                    <div class="social-media">
+                        <a href="#" class="social-btn youtube">
+                            <i class="fab fa-youtube"></i>
+                            <span>YouTube</span>
+                        </a>
+                        <a href="#" class="social-btn instagram">
+                            <i class="fab fa-instagram"></i>
+                            <span>Instagram</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2023 Soyle.kz - Барлық құқықтар қорғалған</p>
+            </div>
+        </div>
+        <div class="footer-particles"></div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const particlesContainer = document.querySelector('.particles');
+            const footerParticles = document.querySelector('.footer-particles');
+
+            function createParticles() {
+                for (let i = 0; i < 30; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+                    particle.style.width = Math.random() * 5 + 'px';
+                    particle.style.height = particle.style.width;
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.animationDuration = Math.random() * 10 + 10 + 's';
+                    particle.style.animationDelay = Math.random() * 5 + 's';
+                    particlesContainer.appendChild(particle);
+                }
+
+                for (let i = 0; i < 20; i++) {
+                    const particle = document.createElement('div');
+                    particle.style.position = 'absolute';
+                    particle.style.width = Math.random() * 3 + 'px';
+                    particle.style.height = particle.style.width;
+                    particle.style.backgroundColor = 'rgba(255, 193, 7, 0.3)';
+                    particle.style.borderRadius = '50%';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.top = Math.random() * 100 + '%';
+                    particle.style.animation = particle-fall ${Math.random() * 10 + 10}s linear infinite;
+                    particle.style.animationDelay = Math.random() * 5 + 's';
+                    footerParticles.appendChild(particle);
+                }
+            }
+
+            createParticles();
+
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const nav = document.getElementById('nav');
+
+            mobileMenuBtn.addEventListener('click', () => {
+                nav.classList.toggle('active');
+            });
+
+            // Header scroll effect
+            window.addEventListener('scroll', () => {
+                const header = document.getElementById('header');
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

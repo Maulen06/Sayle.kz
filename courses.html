@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soyle.kz - Курстарды қарау</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #FFC107;
+            --primary-dark: #FFA000;
+            --secondary-color: #2c3e50;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --gray-color: #6c757d;
+            --success-color: #28a745;
+            --pastel-pink: #f7d9e3;
+            --pastel-blue: #d6e6f2;
+            --pastel-purple: #e4d7f5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 10px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+            margin-left: 5px;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+            position: relative;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            font-weight: 600;
+            font-size: 16px;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-dark);
+        }
+
+        .auth-buttons {
+            display: flex;
+            align-items: center;
+        }
+
+        .request-btn {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 193, 7, 0.3);
+            display: inline-block;
+        }
+
+        .request-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 160, 0, 0.4);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--secondary-color);
+            cursor: pointer;
+        }
+
+        /* Main Section */
+        .courses-section {
+            padding: 120px 0 100px;
+            position: relative;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--pastel-blue) 0%, var(--pastel-pink) 100%);
+            overflow: hidden;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            font-size: 36px;
+            color: var(--secondary-color);
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: fadeIn 1s ease;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 4px;
+            background: var(--primary-color);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Course Cards */
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            perspective: 1000px;
+        }
+
+        .course-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            transform-style: preserve-3d;
+            backdrop-filter: blur(10px);
+        }
+
+        .course-card:hover {
+            transform: translateY(-15px) rotateY(5deg);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+        }
+
+        .course-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .course-image:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+            opacity: 0.3;
+        }
+
+        .course-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            z-index: 2;
+        }
+
+        .course-content {
+            padding: 25px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .course-title {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+            font-weight: 700;
+        }
+
+        .course-description {
+            color: var(--gray-color);
+            margin-bottom: 20px;
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: var(--gray-color);
+        }
+
+        .course-meta span {
+            display: flex;
+            align-items: center;
+        }
+
+        .course-meta i {
+            margin-right: 5px;
+            color: var(--primary-color);
+        }
+
+        .course-details {
+            color: var(--gray-color);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .course-details li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .course-details i {
+            margin-right: 8px;
+            color: var(--primary-color);
+        }
+
+        /* Flower Animation Canvas */
+        #flowerCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .floating {
+            animation: float 5s ease-in-out infinite;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-wrapper {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 80px);
+                background: white;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                transition: all 0.3s;
+                z-index: 999;
+                flex-direction: column;
+                padding: 30px;
+                gap: 20px;
+            }
+
+            nav.active {
+                left: 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                padding: 30px;
+            }
+
+            nav ul li {
+                margin: 15px 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .auth-buttons {
+                display: none;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .course-card {
+                max-width: 350px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section-title {
+                font-size: 24px;
+            }
+
+            .course-title {
+                font-size: 20px;
+            }
+
+            .course-description {
+                font-size: 14px;
+            }
+        }
+
+        /* Добавление стилей и анимаций для футера */
+.footer {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, #1a2530 100%);
+    color: #fff;
+    padding: 60px 0 20px;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.quote-section {
+    margin-bottom: 50px;
+    padding: 20px 0;
+    position: relative;
+}
+
+.quote-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: var(--primary-color);
+    border-radius: 3px;
+}
+
+.quote-slider {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    height: 120px;
+}
+
+.quote-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transform: translateY(20px);
+}
+
+.quote-item.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.quote-icon {
+    color: var(--primary-color);
+    font-size: 24px;
+    opacity: 0.7;
+    margin-bottom: 15px;
+    display: inline-block;
+    animation: pulse 2s infinite;
+}
+
+.quote-text {
+    font-size: 20px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    font-style: italic;
+    font-weight: 500;
+}
+
+.quote-author {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 15px;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.footer-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.footer-particles::before {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    animation: particle-fall 15s linear infinite;
+    opacity: 0.3;
+}
+
+@keyframes particle-fall {
+    0% { transform: translateY(-100vh) translateX(0); }
+    100% { transform: translateY(100vh) translateX(100px); }
+}
+
+.social-btn {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-radius: 8px;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    background: rgba(255,255,255,0.05);
+    overflow: hidden;
+    position: relative;
+}
+
+.social-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.social-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: 0.5s;
+}
+
+.social-btn:hover::before {
+    left: 100%;
+}
+
+.social-btn i {
+    font-size: 18px;
+    margin-right: 10px;
+    width: 20px;
+}
+
+.youtube {
+    background: rgba(255, 0, 0, 0.1);
+    border-left: 3px solid #FF0000;
+}
+
+.instagram {
+    background: rgba(188, 42, 141, 0.1);
+    border-left: 3px solid #E1306C;
+}
+
+@media (max-width: 768px) {
+    .quote-text {
+        font-size: 18px;
+    }
+}
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="main.html"><img src="https://6f2859a7-8667-4b05-9978-a8922e29bf1f.selstorage.ru/YT:UC7Blt3m2UpBeTr6m6hvf1Og?time=1723993714" alt=""></a>
+                    Soyle<span>.kz</span>
+                </div>
+                <div class="nav-wrapper">
+                    <nav id="nav">
+                        <ul>
+                            <li><a href="main.html">Басты бет</a></li>
+                            <li><a href="aboutus.html">Біз туралы</a></li>
+                            <li><a href="contactus.html">Байланыс</a></li>
+                        </ul>
+                    </nav>
+                    <div class="auth-buttons">
+                        <a href="leaverequest.html" class="request-btn">Өтініш қалдыру</a>
+                    </div>
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="courses-section">
+        <canvas id="flowerCanvas"></canvas>
+        <div class="container">
+            <h2 class="section-title floating">Біздің курстар</h2>
+            <div class="course-grid">
+                <div class="course-card">
+                    <div class="course-image" style="background-image: url('https://avatars.mds.yandex.net/i?id=645e2bb5db2b9763e814f35e613346f700c37a5a-4076159-images-thumbs&n=13');">
+                        <span class="course-badge">Жаңа</span>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">Ағылшын тілі</h3>
+                        <p class="course-description">Ағылшын тілін нөлден бастап үйреніңіз немесе біліміңізді жетілдіріңіз. A1-C2 деңгейлеріне арналған курс.</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-clock"></i> 3 ай</span>
+                            <span><i class="fas fa-users"></i> 1200+ оқушы</span>
+                        </div>
+                        <ul class="course-details">
+                            <li><i class="fas fa-level-up-alt"></i> Деңгей: A1-C2</li>
+                            <li><i class="fas fa-laptop"></i> Формат: Онлайн/Офлайн</li>
+                            <li><i class="fas fa-money-bill-wave"></i> Бағасы: 30,000 KZT/ай</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-image" style="background-image: url('https://img.freepik.com/premium-vector/flat-chinese-language-day-horizontal-background_598466-48.jpg');">
+                        <span class="course-badge">Танымал</span>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">Қытай тілі</h3>
+                        <p class="course-description">Қытай тілін және иероглифтерді үйреніңіз. HSK сынақтарына дайындалуға арналған курс.</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-clock"></i> 6 ай</span>
+                            <span><i class="fas fa-users"></i> 800+ оқушы</span>
+                        </div>
+                        <ul class="course-details">
+                            <li><i class="fas fa-level-up-alt"></i> Деңгей: HSK 1-4</li>
+                            <li><i class="fas fa-laptop"></i> Формат: Онлайн</li>
+                            <li><i class="fas fa-money-bill-wave"></i> Бағасы: 40,000 KZT/ай</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-image" style="background-image: url('https://media.istockphoto.com/id/857541562/vector/turkish-travels.jpg?s=612x612&w=0&k=20&c=FwWumaIQHV4j0UIQcP0rwOMPEjvxX6v5P4q2t2SNcuI=');">
+                        <span class="course-badge">Арнайы</span>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">Түрік тілі</h3>
+                        <p class="course-description">Түрік тілін тегін үйреніңіз. Түркияда оқу және жұмыс істеуге дайындық.</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-clock"></i> 4 ай</span>
+                            <span><i class="fas fa-users"></i> 1500+ оқушы</span>
+                        </div>
+                        <ul class="course-details">
+                            <li><i class="fas fa-level-up-alt"></i> Деңгей: A1-B1</li>
+                            <li><i class="fas fa-laptop"></i> Формат: Онлайн/Офлайн</li>
+                            <li><i class="fas fa-money-bill-wave"></i> Бағасы: Тегін (гранттық бағдарлама)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Mobile Menu Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const nav = document.getElementById('nav');
+
+            mobileMenuBtn.addEventListener('click', function() {
+                nav.classList.toggle('active');
+            });
+
+            // Header Scroll Effect
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Flower Animation
+            const canvas = document.getElementById('flowerCanvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const flowers = [];
+            const pastelColors = ['#f7d9e3', '#d6e6f2', '#e4d7f5'];
+
+            class Flower {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 20 + 10;
+                    this.color = pastelColors[Math.floor(Math.random() * pastelColors.length)];
+                    this.speedX = Math.random() * 0.5 - 0.25;
+                    this.speedY = Math.random() * 0.5 - 0.25;
+                    this.angle = 0;
+                    this.spin = Math.random() * 0.02 - 0.01;
+                }
+
+                draw() {
+                    ctx.save();
+                    ctx.translate(this.x, this.y);
+                    ctx.rotate(this.angle);
+                    ctx.fillStyle = this.color;
+                    ctx.beginPath();
+                    for (let i = 0; i < 8; i++) {
+                        ctx.ellipse(0, 0, this.size / 4, this.size, 0, i * Math.PI / 4, (i + 0.5) * Math.PI / 4);
+                        ctx.fill();
+                    }
+                    ctx.beginPath();
+                    ctx.arc(0, 0, this.size / 3, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+                    ctx.fill();
+                    ctx.restore();
+                }
+
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    this.angle += this.spin;
+                    if (this.x < 0 || this.x > canvas.width) this.speedX = -this.speedX;
+                    if (this.y < 0 || this.y > canvas.height) this.speedY = -this.speedY;
+                }
+            }
+
+            function initFlowers() {
+                for (let i = 0; i < 20; i++) {
+                    flowers.push(new Flower());
+                }
+            }
+
+            function animateFlowers() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                flowers.forEach(flower => {
+                    flower.update();
+                    flower.draw();
+                });
+                requestAnimationFrame(animateFlowers);
+            }
+
+            initFlowers();
+            animateFlowers();
+
+            window.addEventListener('resize', () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+        });
+    </script>
+</body>
+</html>

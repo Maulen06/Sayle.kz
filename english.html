@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soyle.kz - Ағылшын тілі курсы</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #c0392b; /* British red */
+            --primary-dark: #a93226;
+            --secondary-color: #2c3e50;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --gray-color: #6c757d;
+            --pastel-blue: #3498db; /* British blue */
+            --pastel-white: #ecf0f1;
+            --pastel-red: #e6b0aa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 10px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+            margin-left: 5px;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+            position: relative;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            font-weight: 600;
+            font-size: 16px;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-dark);
+        }
+
+        .auth-buttons {
+            display: flex;
+            align-items: center;
+        }
+
+        .request-btn {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(192, 57, 43, 0.3);
+            display: inline-block;
+        }
+
+        .request-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(169, 50, 38, 0.4);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--secondary-color);
+            cursor: pointer;
+        }
+
+        /* Main Section */
+        .english-course-section {
+            padding: 120px 0 100px;
+            position: relative;
+            background: linear-gradient(135deg, var(--pastel-blue) 0%, var(--pastel-white) 100%);
+            overflow: hidden;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 36px;
+            color: var(--secondary-color);
+            font-weight: 700;
+            position: relative;
+            animation: fadeIn 1s ease;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 4px;
+            background: var(--primary-color);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Introduction */
+        .intro {
+            max-width: 800px;
+            margin: 0 auto 60px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            animation: slideUp 1s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .intro p {
+            font-size: 18px;
+            color: var(--gray-color);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* Course Details */
+        .course-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 0 auto 60px;
+            max-width: 1000px;
+        }
+
+        .detail-item {
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid var(--pastel-blue);
+        }
+
+        .detail-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .detail-item i {
+            font-size: 30px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .detail-item h3 {
+            font-size: 18px;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .detail-item p {
+            font-size: 14px;
+            color: var(--gray-color);
+        }
+
+        /* Skills Section */
+        .skills-section {
+            padding: 60px 0;
+            background: rgba(255, 255, 255, 0.2);
+            margin-bottom: 60px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .skill-item {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .skill-item i {
+            font-size: 40px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .skill-item h3 {
+            font-size: 20px;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .skill-item p {
+            font-size: 14px;
+            color: var(--gray-color);
+            line-height: 1.5;
+        }
+
+        /* Schedule Section */
+        .schedule-section {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .schedule-content {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .schedule-content p {
+            font-size: 18px;
+            color: var(--gray-color);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: 60px 0;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .testimonial-item {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .testimonial-item p {
+            font-size: 16px;
+            color: var(--gray-color);
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .testimonial-author img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+            border: 2px solid var(--primary-color);
+        }
+
+        .author-info h4 {
+            font-size: 16px;
+            color: var(--secondary-color);
+            margin-bottom: 5px;
+        }
+
+        .author-info p {
+            font-size: 12px;
+            color: var(--gray-color);
+        }
+
+        /* Big Ben Clock Animation Canvas */
+        #clockCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* British Ornament Decoration */
+        .ornament-decoration {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .ornament {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle, var(--primary-color) 10%, transparent 10%),
+                        linear-gradient(45deg, var(--pastel-blue), var(--pastel-white));
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .ornament:nth-child(1) { left: 5%; top: 15%; animation-delay: 0s; }
+        .ornament:nth-child(2) { left: 10%; top: 60%; animation-delay: 1s; }
+        .ornament:nth-child(3) { right: 5%; top: 25%; animation-delay: 2s; }
+        .ornament:nth-child(4) { right: 10%; top: 70%; animation-delay: 3s; }
+
+        /* Floating Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .floating {
+            animation: float 5s ease-in-out infinite;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-wrapper {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 80px);
+                background: white;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                transition: all 0.3s;
+                z-index: 999;
+                flex-direction: column;
+                padding: 30px;
+                gap: 20px;
+            }
+
+            nav.active {
+                left: 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                padding: 30px;
+            }
+
+            nav ul li {
+                margin: 15px 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .auth-buttons {
+                display: none;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .intro, .schedule-content {
+                padding: 20px;
+            }
+
+            .course-details, .skills-grid, .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section-title {
+                font-size: 24px;
+            }
+
+            .intro p, .schedule-content p {
+                font-size: 16px;
+            }
+
+            .detail-item h3, .skill-item h3 {
+                font-size: 16px;
+            }
+        }
+
+        /* Добавление стилей и анимаций для футера */
+.footer {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, #1a2530 100%);
+    color: #fff;
+    padding: 60px 0 20px;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.quote-section {
+    margin-bottom: 50px;
+    padding: 20px 0;
+    position: relative;
+}
+
+.quote-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: var(--primary-color);
+    border-radius: 3px;
+}
+
+.quote-slider {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    height: 120px;
+}
+
+.quote-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transform: translateY(20px);
+}
+
+.quote-item.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.quote-icon {
+    color: var(--primary-color);
+    font-size: 24px;
+    opacity: 0.7;
+    margin-bottom: 15px;
+    display: inline-block;
+    animation: pulse 2s infinite;
+}
+
+.quote-text {
+    font-size: 20px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    font-style: italic;
+    font-weight: 500;
+}
+
+.quote-author {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 15px;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.footer-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.footer-particles::before {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    animation: particle-fall 15s linear infinite;
+    opacity: 0.3;
+}
+
+@keyframes particle-fall {
+    0% { transform: translateY(-100vh) translateX(0); }
+    100% { transform: translateY(100vh) translateX(100px); }
+}
+
+.social-btn {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-radius: 8px;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    background: rgba(255,255,255,0.05);
+    overflow: hidden;
+    position: relative;
+}
+
+.social-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.social-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: 0.5s;
+}
+
+.social-btn:hover::before {
+    left: 100%;
+}
+
+.social-btn i {
+    font-size: 18px;
+    margin-right: 10px;
+    width: 20px;
+}
+
+.youtube {
+    background: rgba(255, 0, 0, 0.1);
+    border-left: 3px solid #FF0000;
+}
+
+.instagram {
+    background: rgba(188, 42, 141, 0.1);
+    border-left: 3px solid #E1306C;
+}
+
+@media (max-width: 768px) {
+    .quote-text {
+        font-size: 18px;
+    }
+}
+    </style>
+</head>
+<body>
+    <header id="header">
+    <div class="container">
+        <div class="header-content">
+            <div class="logo">
+                <a href="main.html"><img src="https://6f2859a7-8667-4b05-9978-a8922e29bf1f.selstorage.ru/YT:UC7Blt3m2UpBeTr6m6hvf1Og?time=1723993714" alt=""></a>
+                Soyle<span>.kz</span>
+            </div>
+            <div class="nav-wrapper">
+                <nav id="nav">
+                    <ul>
+                        <li><a href="main.html">Басты бет</a></li>
+                        <li><a href="aboutus.html">Біз туралы</a></li>
+                        <li><a href="contactus.html">Байланыс</a></li>
+                    </ul>
+                </nav>
+                <div class="auth-buttons">
+                    <a href="leaverequest.html" class="request-btn">Өтініш қалдыру</a>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <section class="english-course-section">
+        <canvas id="clockCanvas"></canvas>
+        <div class="ornament-decoration">
+            <div class="ornament"></div>
+            <div class="ornament"></div>
+            <div class="ornament"></div>
+            <div class="ornament"></div>
+        </div>
+
+        <!-- Introduction -->
+        <div class="container">
+            <h2 class="section-title floating">Ағылшын тілі курсы</h2>
+            <div class="intro">
+                <p>Ағылшын тілі – әлемнің лингва-франкасы, халықаралық байланыс, білім және бизнес тілі. Біздің курс арқылы сіз ағылшын тілін тиімді және қызықты түрде меңгересіз. IELTS, TOEFL сияқты халықаралық емтихандарға дайындалып, әлемдік мүмкіндіктерді ашыңыз.</p>
+                <p>Курс онлайн форматта, тәжірибелі мұғалімдермен және интерактивті әдістемелермен өтеді. Британдық және американдық мәдениет элементтерімен байытылған сабақтар сіздің тіл үйрену процесін ұмытылмас етеді.</p>
+            </div>
+
+            <!-- Course Details -->
+            <div class="course-details">
+                <div class="detail-item">
+                    <i class="fas fa-book"></i>
+                    <h3>Деңгейлер</h3>
+                    <p>A1-C1 деңгейлері, бастауыштан жоғары деңгейге дейін</p>
+                </div>
+                <div class="detail-item">
+                    <i class="fas fa-laptop"></i>
+                    <h3>Формат</h3>
+                    <p>Онлайн сабақтар, интерактивті платформалар</p>
+                </div>
+                <div class="detail-item">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <h3>Бағасы</h3>
+                    <p>50,000 KZT/ай, алғашқы сабақ тегін</p>
+                </div>
+                <div class="detail-item">
+                    <i class="fas fa-certificate"></i>
+                    <h3>Сертификат</h3>
+                    <p>Курсты аяқтаған соң ресми сертификат</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skills Section -->
+        <div class="skills-section">
+            <div class="container">
+                <h2 class="section-title">Үйрету дағдылары</h2>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <i class="fas fa-microphone"></i>
+                        <h3>Сөйлеу</h3>
+                        <p>Ағылшын тілінде еркін сөйлеуді және дұрыс айтылымды меңгеріңіз. Презентациялар мен күнделікті диалогтарға дайындалыңыз.</p>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-pen"></i>
+                        <h3>Жазу</h3>
+                        <p>Эссе, хат және ресми құжаттар жазуды үйреніңіз. IELTS Writing тапсырмаларына дайындалыңыз.</p>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-headphones"></i>
+                        <h3>Тыңдау</h3>
+                        <p>Ағылшын тіліндегі сөйлеуді түсіну дағдыларын дамытыңыз. Подкасттар, фильмдер және лекциялармен жұмыс істеңіз.</p>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-book-open"></i>
+                        <h3>Оқу</h3>
+                        <p>Ағылшын тіліндегі мәтіндерді оқуды және түсінуді үйреніңіз. Академиялық мақалалар мен әдебиетпен танысыңыз.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Schedule Section -->
+        <div class="schedule-section">
+            <div class="container">
+                <h2 class="section-title">Сабақ кестесі</h2>
+                <div class="schedule-content">
+                    <p>Ағылшын тілі курсы аптасына 3 рет онлайн форматта өтеді. Әр сабақ 90 минутқа созылады, бұл тілді терең меңгеруге және практикалық дағдыларды дамытуға жеткілікті уақыт береді.</p>
+                    <p><strong>Кесте:</strong> Дүйсенбі, Сәрсенбі, Жұма – 18:30-20:00 (Алматы уақыты). Сонымен қатар, аптасына бір рет тегін Speaking Club ұйымдастырылады, онда сіз басқа оқушылармен ағылшын тілінде сөйлесе аласыз.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Testimonials Section -->
+        <div class="testimonials-section">
+            <div class="container">
+                <h2 class="section-title">Оқушылардың пікірлері</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-item">
+                        <p>"Бұл курс маған IELTS емтиханына дайындалуға өте көп көмектесті. Мұғалімдер кәсіби, ал сабақтар өте қызықты!"</p>
+                        <div class="testimonial-author">
+                            <img src="https://i1.rgstatic.net/ii/profile.image/936334474629120-1600250943052_Q512/Maulen-Akhmetov.jpg" alt="Ербол Сапаров">
+                            <div class="author-info">
+                                <h4>Ербол Сапаров</h4>
+                                <p>B2 аяқтаған</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-item">
+                        <p>"Ағылшын тілінде сөйлеуге деген қорқынышым жойылды. Speaking Club сабақтары өте пайдалы болды!"</p>
+                        <div class="testimonial-author">
+                            <img src="https://weproject.media/upload/resize_cache/iblock/c35/400_450_240cd750bba9870f18aada2478b24840a/c350a4036a72fd09374424083bd1c3ab.jpg" alt="Айгерім Тұрсын">
+                            <div class="author-info">
+                                <h4>Айгерім Тұрсын</h4>
+                                <p>A2 студенті</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-item">
+                        <p>"Курс өте жақсы ұйымдастырылған. Аптасына 3 сабақ және қосымша клубтар менің ағылшын тілімді жақсартты."</p>
+                        <div class="testimonial-author">
+                            <img src="https://kaztbu.edu.kz/storage/app/uploads/public/625/e84/7a5/625e847a56696091699332.jpeg" alt="Нұрлан Жұмабаев">
+                            <div class="author-info">
+                                <h4>Нұрлан Жұмабаев</h4>
+                                <p>C1 студенті</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Mobile Menu Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const nav = document.getElementById('nav');
+
+            mobileMenuBtn.addEventListener('click', function() {
+                nav.classList.toggle('active');
+            });
+
+            // Header Scroll Effect
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Big Ben Clock Animation
+            const canvas = document.getElementById('clockCanvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const clocks = [];
+            const pastelColors = ['#3498db', '#ecf0f1', '#c0392b'];
+
+            class Clock {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 25 + 15;
+                    this.color = pastelColors[Math.floor(Math.random() * pastelColors.length)];
+                    this.speedX = Math.random() * 0.3 - 0.15;
+                    this.speedY = Math.random() * 0.3 - 0.15;
+                    this.angle = 0;
+                    this.spin = Math.random() * 0.01 - 0.005;
+                }
+
+                draw() {
+                    ctx.save();
+                    ctx.translate(this.x, this.y);
+                    ctx.rotate(this.angle);
+                    ctx.fillStyle = this.color;
+                    ctx.beginPath();
+                    // Draw clock face
+                    ctx.arc(0, 0, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                    // Draw clock hands
+                    ctx.strokeStyle = 'rgba(255, 255, 255, 0.9)';
+                    ctx.lineWidth = 2;
+                    ctx.beginPath();
+                    ctx.moveTo(0, 0);
+                    ctx.lineTo(this.size * 0.6, 0);
+                    ctx.stroke();
+                    ctx.beginPath();
+                    ctx.moveTo(0, 0);
+                    ctx.lineTo(0, -this.size * 0.4);
+                    ctx.stroke();
+                    ctx.restore();
+
+                    // Starry effect
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+                    ctx.fill();
+                }
+
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    this.angle += this.spin;
+                    if (this.x < 0 || this.x > canvas.width) this.speedX = -this.speedX;
+                    if (this.y < 0 || this.y > canvas.height) this.speedY = -this.speedY;
+                }
+            }
+
+            function initClocks() {
+                for (let i = 0; i < 15; i++) {
+                    clocks.push(new Clock());
+                }
+            }
+
+            function animateClocks() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                clocks.forEach(clock => {
+                    clock.update();
+                    clock.draw();
+                });
+                requestAnimationFrame(animateClocks);
+            }
+
+            initClocks();
+            animateClocks();
+
+            window.addEventListener('resize', () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+        });
+    </script>
+</body>
+</html>
